@@ -1,0 +1,7 @@
+aws_region = "us-west-2"
+
+# The domain you want visitors to see when they visit your site.
+primary_domain = "example.com"
+
+# Any domains you want to redirect to the primary domain.
+redirect_domains = ["www.example.com", "example.net", "example.org"]
