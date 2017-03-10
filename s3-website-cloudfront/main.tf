@@ -2,16 +2,16 @@ variable "bucket_domain" {
   type = "string"
 }
 
-variable "bucket_path" {
-  default = ""
-}
-
 variable "cloudfront_aliases" {
   type = "list"
 }
 
 variable "https_mode" {
   default = "redirect-to-https"
+}
+
+variable "redirect_to_primary" {
+  default = false
 }
 
 output "domain_name" {
@@ -23,14 +23,14 @@ output "hosted_zone_id" {
 }
 
 resource "aws_cloudfront_origin_access_identity" "website" {
-  comment = "${var.bucket_domain}${var.bucket_path}"
+  comment = "${var.bucket_domain}${var.redirect_to_primary ? "/_s3_website_redirect" : ""}"
 }
 
 resource "aws_cloudfront_distribution" "website" {
   origin {
     domain_name = "${var.bucket_domain}"
     origin_id = "${aws_cloudfront_origin_access_identity.website.id}"
-    origin_path = "${var.bucket_path}"
+    origin_path = "${var.redirect_to_primary ? "/_s3_website_redirect" : ""}"
 
     s3_origin_config {
       origin_access_identity = "${aws_cloudfront_origin_access_identity.website.cloudfront_access_identity_path}"
