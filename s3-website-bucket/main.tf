@@ -26,6 +26,19 @@ resource "aws_s3_bucket" "website_bucket" {
   website {
     index_document = "${var.index_document}"
     error_document = "${var.error_document}"
+    routing_rules = <<JSON
+      [{
+          "Condition": {
+              "KeyPrefixEquals": "_s3_website_redirect/"
+          },
+          "Redirect": {
+              "ReplaceKeyPrefixWith": "/",
+              "HostName": "${var.primary_domain}",
+              "HttpRedirectCode": "301",
+              "Protocol": "https"
+          }
+      }]
+JSON
   }
 }
 
