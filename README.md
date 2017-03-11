@@ -5,13 +5,15 @@ A collection of potentially reusable [Terraform](https://www.terraform.io/) modu
 ## Index
 
 * [AWS S3 Static Websites](#aws-s3-static-websites)
-** [s3-website-bucket module](#s3-website-bucket-module)
-** [s3-website-cloudfront module](#s3-website-cloudfront-module)
-** [s3-website-route53 module](#s3-website-route53-module)
+  * [s3-website-bucket module](#s3-website-bucket-module)
+  * [s3-website-cloudfront module](#s3-website-cloudfront-module)
+  * [s3-website-route53 module](#s3-website-route53-module)
 
 ## AWS S3 Static Websites
 
 The `s3-website-*` modules provide everything required to configure a cost-efficent [static website with AWS S3](http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html). You can combine these modules for a complete static website hosting solution, including CDN with and DNS, or you can use the modules à la carte if you are already using another provider for CDN and DNS, such as CloudFlare.
+
+### Usage
 
 See [examples/s3-website/main.tf](examples/s3-website/main.tf) for a complete example.
 
@@ -68,10 +70,10 @@ __NOTE:__ this module does not register a domain or configure your nameservers. 
 |------|------|-------------|----------|---------|
 | zones | list | a list of domains to create route53 hosted zones for | yes | |
 | primary_domain | string | the primary domain of your website | yes | |
-| primary_distribution_domain | the cloudfront distribution domain of your primary distribution | yes | |
-| primary_distribution_zone_id | the cloudfront distribution hosted zone id of your primary distribution | yes | |
-| redirect_distribution_domain | the cloudfront distribution domain of your redirect distribution | yes | |
-| redirect_distribution_zone_id | the cloudfront distribution hosted zone id of your redirect distribution | yes | |
+| primary_distribution_domain | string | the cloudfront distribution domain of your primary distribution | yes | |
+| primary_distribution_zone_id | string | the cloudfront distribution hosted zone id of your primary distribution | yes | |
+| redirect_distribution_domain | string | the cloudfront distribution domain of your redirect distribution | yes | |
+| redirect_distribution_zone_id | string | the cloudfront distribution hosted zone id of your redirect distribution | yes | |
 
 #### Outputs
 
