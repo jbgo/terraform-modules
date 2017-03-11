@@ -10,12 +10,8 @@ variable "error_document" {
   default = "index.html"
 }
 
-output "bucket_domain" {
-  value = "${aws_s3_bucket.website_bucket.bucket_domain_name}"
-}
-
-output "website_url" {
-  value = "${aws_s3_bucket.website_bucket.website_endpoint}"
+output "website_endpoint" {
+  value = "${aws_s3_bucket.website_bucket.website_url}"
 }
 
 resource "aws_s3_bucket" "website_bucket" {

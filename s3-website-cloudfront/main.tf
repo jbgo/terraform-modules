@@ -1,4 +1,4 @@
-variable "bucket_domain" {
+variable "website_endpoint" {
   type = "string"
 }
 
@@ -23,12 +23,12 @@ output "hosted_zone_id" {
 }
 
 resource "aws_cloudfront_origin_access_identity" "website" {
-  comment = "${var.bucket_domain}${var.redirect_to_primary ? "/_s3_website_redirect" : ""}"
+  comment = "${var.website_endpoint}${var.redirect_to_primary ? "/_s3_website_redirect" : ""}"
 }
 
 resource "aws_cloudfront_distribution" "website" {
   origin {
-    domain_name = "${var.bucket_domain}"
+    domain_name = "${var.website_endpoint}"
     origin_id = "${aws_cloudfront_origin_access_identity.website.id}"
     origin_path = "${var.redirect_to_primary ? "/_s3_website_redirect" : ""}"
 
