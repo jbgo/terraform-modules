@@ -39,14 +39,14 @@ module "s3_website_bucket" {
 module "s3_website_cloudfront" {
   source = "../s3-website-cloudfront"
   bucket_domain = "${module.s3_website_bucket.bucket_domain}"
-  cloudfront_aliases = ["${var.primary_domain}"]
+  alias_domains = ["${var.primary_domain}"]
 }
 
 module "s3_website_cloudfront_redirect" {
   source = "../s3-website-cloudfront"
   bucket_domain = "${module.s3_website_bucket.bucket_domain}"
   redirect_to_primary = true
-  cloudfront_aliases = "${var.redirect_domains}"
+  alias_domains = "${var.redirect_domains}"
 }
 
 module "s3_website_route53" {

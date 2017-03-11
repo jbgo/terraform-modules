@@ -2,7 +2,7 @@ variable "bucket_domain" {
   type = "string"
 }
 
-variable "cloudfront_aliases" {
+variable "alias_domains" {
   type = "list"
 }
 
@@ -41,7 +41,7 @@ resource "aws_cloudfront_distribution" "website" {
   is_ipv6_enabled = true
   default_root_object = "index.html"
 
-  aliases = "${var.cloudfront_aliases}"
+  aliases = "${var.alias_domains}"
 
   default_cache_behavior {
     allowed_methods = ["GET", "HEAD"]
