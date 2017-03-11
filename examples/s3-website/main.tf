@@ -47,13 +47,13 @@ module "website_bucket" {
 
 module "website_cdn_primary" {
   source = "github.com/jbgo/terraform-modules//s3-website-cloudfront"
-  bucket_endpoint = "${module.website_bucket.website_endpoint}"
+  bucket_domain = "${module.website_bucket.bucket_domain}"
   alias_domains = ["${var.primary_domain}"]
 }
 
 module "website_cdn_redirects" {
   source = "github.com/jbgo/terraform-modules//s3-website-cloudfront"
-  bucket_endpoint = "${module.website_bucket.website_endpoint}"
+  bucket_domain = "${module.website_bucket.bucket_domain}"
   redirect_to_primary = true
   alias_domains = "${var.redirect_domains}"
 }

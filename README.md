@@ -33,7 +33,8 @@ Creates and configures an S3 bucket to host a static website. As part of the con
 
 | name | type | description |
 |------|------|-------------|
-| website_endpoint | string | the [S3 endpoint](http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteEndpoints.html) for your bucket website |
+| bucket_domain | string | the [S3 endpoint](http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteEndpoints.html) for your bucket website |
+| website_url | string | the full URL of your S3 bucket website |
 
 ### s3-website-cloudfront module
 
@@ -43,7 +44,7 @@ Creates a CloudFront distributions configured to use the S3 bucket website ident
 
 | name | type | description | required | default |
 |------|------|-------------|----------|---------|
-| website_endpoint | string | the S3 endpoint of your bucket website | yes | |
+| bucket_domain | string | the S3 endpoint of your bucket website, this is the same value as the s3-website-bucket module's bucket_domain output | yes | |
 | alias_domains | list | a list of custom domains that | yes | |
 | https_mode | string | the [viewer protocol policy]() for this cloudfront distribution | no | redirect-to-https |
 | redirect_to_primary | bool | whether the alias_domains should redirect to the primary (canonical) domain* | no | false |
