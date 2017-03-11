@@ -32,25 +32,25 @@ provider "aws" {
 }
 
 module "s3_website_bucket" {
-  source = "../s3-website-bucket"
+  source = "github.com/jbgo/terraform-modules//s3-website-bucket"
   primary_domain = "${var.primary_domain}"
 }
 
 module "s3_website_cloudfront" {
-  source = "../s3-website-cloudfront"
+  source = "github.com/jbgo/terraform-modules//s3-website-cloudfront"
   bucket_domain = "${module.s3_website_bucket.bucket_domain}"
   alias_domains = ["${var.primary_domain}"]
 }
 
 module "s3_website_cloudfront_redirect" {
-  source = "../s3-website-cloudfront"
+  source = "github.com/jbgo/terraform-modules//s3-website-cloudfront"
   bucket_domain = "${module.s3_website_bucket.bucket_domain}"
   redirect_to_primary = true
   alias_domains = "${var.redirect_domains}"
 }
 
 module "s3_website_route53" {
-  source = "../s3-website-route53"
+  source = "github.com/jbgo/terraform-modules//s3-website-route53"
 
   zones = "${var.route53_zones}"
   primary_domain = "${var.primary_domain}"
