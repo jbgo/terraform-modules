@@ -32,7 +32,7 @@ resource "aws_s3_bucket" "website_bucket" {
               "KeyPrefixEquals": "_s3_website_redirect/"
           },
           "Redirect": {
-              "ReplaceKeyPrefixWith": "/",
+              "ReplaceKeyPrefixWith": "",
               "HostName": "${var.primary_domain}",
               "HttpRedirectCode": "301",
               "Protocol": "https"
