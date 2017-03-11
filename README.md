@@ -46,7 +46,7 @@ Creates a CloudFront distributions configured to use the S3 bucket website ident
 |------|------|-------------|----------|---------|
 | bucket_domain | string | the S3 endpoint of your bucket website, this is the same value as the s3-website-bucket module's bucket_domain output | yes | |
 | alias_domains | list | a list of custom domains that | yes | |
-| https_mode | string | the [viewer protocol policy]() for this cloudfront distribution | no | redirect-to-https |
+| https_mode | string | the [viewer protocol policy](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https-viewers-to-cloudfront.html) for this cloudfront distribution | no | allow-all |
 | redirect_to_primary | bool | whether the alias_domains should redirect to the primary (canonical) domain* | no | false |
 
 *When `redirect_to_primary` is set to true, the distribution will use `/_s3_website_redirect` as the [origin path](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginPath). If used in combination with the `s3-website-bucket` module, this will result in any request to any of the alias domains referenced in this distribution to redirect to the `primary_domain` configured for the S3 bucket website.

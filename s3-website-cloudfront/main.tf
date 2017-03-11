@@ -7,7 +7,7 @@ variable "alias_domains" {
 }
 
 variable "https_mode" {
-  default = "redirect-to-https"
+  default = "allow-all"
 }
 
 variable "redirect_to_primary" {
